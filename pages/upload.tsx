@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { SanityAssetDocument } from '@sanity/client';
 import { useRouter } from 'next/router';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md'
 import axios from 'axios';
-import { SanityAssetDocument } from '@sanity/client';
 
 import useAuthStore from '../store/authStore';
 import { client } from '../utils/client';
@@ -44,7 +44,7 @@ const Upload = () => {
     const handlePost = async () => {
         if(caption && videoAsset?._id && category) {
             setSavingPost(true);
-            
+
             const document = {
                 _type: 'post',
                 caption,
@@ -62,10 +62,10 @@ const Upload = () => {
                 },
                 topic: category
             }
-
-            await axios.post('http://localhost:3000/api/post', document);
-
-            router.push('/');
+    
+    await axios.post('http://localhost:3000/api/post', document);
+    
+    router.push('/');
         }
     }
 
@@ -157,7 +157,7 @@ const Upload = () => {
                             Discard
                         </button>
                         <button
-                            onChange={handlePost}
+                            onClick={handlePost}
                             type="button"
                             className='bg-[#F51997] text-white text-md font-medium p-2 rounded w-28 lg:w-44 outline-none'
                         >
