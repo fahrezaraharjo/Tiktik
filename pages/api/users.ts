@@ -1,24 +1,20 @@
-import create from "zustand";
-import { persist } from "zustand/middleware";
-import axios from "axios";
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { allUsersQuery } from '../../utils/queries';
 
-import { BASE_URL } from "../../utils";
 
-const authStore = (set: any) => ({
-    userProfile: null,
+import { client } from '../../utils/client';
 
-    addUser: (user: any) => set({ userProfile: user }),
-    removeUser: () => set({ userProfile: null }),
 
-    fetchAllUsers: async () => {
-        const response = await axios.get(`${BASE_URL}/api/users`)
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+
+    if (req.method === 'GET') {
+        const data = await client.fetch(allUsersQuery());
+
+        if(data) {
+            res.status(200).json(data);
+        }else {
+            res.json([])
+        }
+
     }
-});
-
-const useAuthStore = create(
-    persist(authStore, {
-        name: 'auth'
-    })
-)
-
-export default useAuthStore;
+} 
