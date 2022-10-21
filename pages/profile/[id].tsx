@@ -12,27 +12,31 @@ interface IProps {
     data: {
         user: IUser,
         userVideos: Video[],
-        userLikedVideo: Video[]
+        userLikedVideos: Video[]
     }
 }
 
 
 const Profile = ({ data }: IProps) => {
-    const [showUserVideos, setShowUserVideos] = useState(true);
+    const [showUserVideos, setShowUserVideos] = useState<Boolean>(true);
     const [videosList, setVideosList] = useState<Video[]>([]);
-    const { user, userVideos, userLikedVideo } = data;
+  
+    const { user, userVideos, userLikedVideos } = data;
     const videos = showUserVideos ? 'border-b-2 border-black' : 'text-gray-400';
     const liked = !showUserVideos ? 'border-b-2 border-black' : 'text-gray-400';
-
+  
     useEffect(() => {
+      const fetchVideos = async () => {
         if (showUserVideos) {
-            setVideosList(userVideos);
+          setVideosList(userVideos);
         } else {
-            setVideosList(userLikedVideo);
+          setVideosList(userLikedVideos);
         }
-    }, [showUserVideos, userLikedVideo, userVideos])
-
-
+      };
+  
+      fetchVideos();
+    }, [showUserVideos, userLikedVideos, userVideos]);
+  
 
     return (
         <div className='w-full'>
