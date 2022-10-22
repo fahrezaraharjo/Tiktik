@@ -13,7 +13,7 @@ const Sidebar = () => {
 
   const [showSidebar, setShowSidebar] = useState(true);
 
-  const normalLink = 'flex item-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#f51997] rounded'
+  const normalLink = 'flex item-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-white rounded'
 
   const userProfile = false
 

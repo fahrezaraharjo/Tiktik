@@ -58,7 +58,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
                     <div>
                         <Link href={`/profile/${post.postedBy._id}`}>
                             <div className='flex items-center gap-2'>
-                                <p className='flex gap-2 items-center md:text-md font-bold text-primary'>{post.postedBy.userName} {``}
+                                <p className='flex gap-2 items-center md:text-md font-bold text-white'>{post.postedBy.userName} {``}
                                     <GoVerified className='text-blue-400 text-md' />
                                 </p>
                                 <p className='capitalize font-medium text-xs text-gray-500 hidden md:block'>{post.postedBy.userName}</p>
@@ -76,7 +76,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
                         <video
                             loop
                             ref={videoRef}
-                            className='lg:w-[700px] h-[300px] md:h-[400px] lg:h-[530px] w-[200px] rounded-2xl cursor-pointer bg-gray-100'
+                            className='lg:w-[700px] h-[300px] md:h-[400px] lg:h-[530px] w-[200px] rounded-2xl cursor-pointer bg-transparent'
                             src={post.video.asset.url}
                         >
                         </video>
@@ -85,20 +85,20 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
                         <div className='absolute bottom-6 cursor-pointer left-8 md:left-14 lg:left-0 flex gap-10 lg:justify-between w-[100px] md:w-[50px] p-3'>
                             {playing ? (
                                 <button onClick={onVideoPress}>
-                                    <BsFillPauseFill className='text-black text-2xl lg:text-4xl'/>
+                                    <BsFillPauseFill className='text-white text-2xl lg:text-4xl'/>
                                 </button>
                             ): (
                                 <button onClick={onVideoPress}>
-                                    <BsFillPlayFill className='text-black text-2xl lg:text-4xl'/>
+                                    <BsFillPlayFill className='text-white text-2xl lg:text-4xl'/>
                                 </button>
                             )}
                              {isVideoMuted ? (
                                 <button onClick={() => {setIsVideoMuted(false)}}>
-                                    <HiVolumeOff className='text-black text-2xl lg:text-4xl'/>
+                                    <HiVolumeOff className='text-white text-2xl lg:text-4xl'/>
                                 </button>
                             ): (
                                 <button onClick={() => {setIsVideoMuted(true)}}>
-                                    <HiVolumeUp className='text-black text-2xl lg:text-4xl'/>
+                                    <HiVolumeUp className='text-white text-2xl lg:text-4xl'/>
                                 </button>
                             )}
                         </div>
